@@ -1,8 +1,8 @@
 const dotenv = require('dotenv');
 const Discord = require('discord.js');
-const { prefix } = require('./config.json');
 
 dotenv.config();
+const prefix = '!';
 
 const client = new Discord.Client();
 
@@ -10,10 +10,6 @@ const getAudioFile = id => {
   const formattedId = id.padStart(2, "0");
   return `assets/${formattedId}.mp3`;
 }
-
-client.once('ready', () => {
-  console.log('ready!');
-});
 
 client.on('message', async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -27,13 +23,13 @@ client.on('message', async message => {
     const voiceChannel = message.member.voice.channel;
     try {
       const connection = await voiceChannel.join();
-      connection.on('debug', console.log);
+      const file = getAudioFile(tauntId);
+      console.log(`Attempting to play file ${file}`);
       const dispatcher = connection.play(getAudioFile(tauntId));
       dispatcher.once('finish', () => voiceChannel.leave());
     } catch (e) {
+      voiceChannel.leave();
       console.error(e);
-    } finally {
-      // voiceChannel.leave();
     }
   }
 });
