@@ -1,8 +1,8 @@
 const dotenv = require('dotenv');
 const Discord = require('discord.js');
+const { prefix } = require('config.json');
 
 dotenv.config();
-const prefix = '!';
 
 const client = new Discord.Client();
 
