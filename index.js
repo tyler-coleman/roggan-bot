@@ -11,6 +11,10 @@ const getAudioFile = id => {
   return `assets/${formattedId}.mp3`;
 }
 
+client.once('ready', () => {
+  console.log(`roggan-bot started at ${new Date().toISOString()}`);
+});
+
 client.on('message', async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
