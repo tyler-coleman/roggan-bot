@@ -29,7 +29,7 @@ client.on('message', async message => {
       const connection = await voiceChannel.join();
       connection.on('debug', console.log);
       const dispatcher = connection.play(getAudioFile(tauntId));
-      dispatcher.once('end', () => voiceChannel.leave());
+      dispatcher.once('finish', () => voiceChannel.leave());
     } catch (e) {
       console.error(e);
     } finally {

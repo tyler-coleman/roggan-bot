@@ -1,5 +1,5 @@
 {
-  "name": "rogan-bot",
+  "name": "roggan-bot",
   "version": "1.0.0",
   "description": "Discord bot for playing AoE2 taunts",
   "main": "index.js",
