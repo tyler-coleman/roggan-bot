@@ -2,14 +2,11 @@ const dotenv = require('dotenv');
 const Discord = require('discord.js');
 const { prefix } = require('./config.json');
 
+const sendTaunt = require('./src/commands/sendTaunt.js');
+
 dotenv.config();
 
 const client = new Discord.Client();
-
-const getAudioFile = id => {
-  const formattedId = id.padStart(2, "0");
-  return `assets/${formattedId}.mp3`;
-}
 
 client.once('ready', () => {
   console.log(`roggan-bot started at ${new Date().toISOString()}`);
@@ -21,20 +18,15 @@ client.on('message', async message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
   
-
-  if (command === 'taunt' && args.length) {
-    const tauntId = args.shift().toLowerCase();
-    const voiceChannel = message.member.voice.channel;
-    try {
-      const connection = await voiceChannel.join();
-      const file = getAudioFile(tauntId);
-      console.log(`Attempting to play file ${file}`);
-      const dispatcher = connection.play(getAudioFile(tauntId));
-      dispatcher.once('finish', () => voiceChannel.leave());
-    } catch (e) {
-      voiceChannel.leave();
-      console.error(e);
-    }
+  switch (command) {
+    case 'taunt':
+      await sendTaunt(
+        (args.shift() || '').toLowerCase(),
+        message.member.voice.channel,
+        message
+      );
+    default:
+      return;
   }
 });
 
