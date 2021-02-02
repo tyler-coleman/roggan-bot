@@ -31,7 +31,7 @@ const sendTaunt = async (tauntId, voiceChannel, message) => {
     console.log(`Attempting to play file ${file}`);
     message.channel.send(TauntMessageEnum[parsedId]);
     const dispatcher = connection.play(getAudioFilePath(tauntId));
-    dispatcher.once('finish', () => voiceChannel.leave());
+    dispatcher.once('finish', () => setTimeout(() => voiceChannel.leave(), 500));
   } catch (e) {
     message.channel.send('Something isn\'t working...');
     voiceChannel.leave();
