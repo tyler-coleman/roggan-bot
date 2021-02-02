@@ -9,6 +9,11 @@ const getAudioFilePath = id => {
 };
 
 const sendTaunt = async (tauntId, voiceChannel, message) => {
+  if (!voiceChannel) {
+    message.channel.send('You\'re not in a voice channel for me to join');
+    return;
+  }
+  
   const parsedId = parseInt(tauntId, 10);
 
   if (parsedId > 42 && parsedId <= 105) {

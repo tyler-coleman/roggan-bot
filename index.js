@@ -14,10 +14,6 @@ client.once('ready', () => {
 
 client.on('message', async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
-  if (!message.member.voice.channel) {
-    message.channel.send('You\'re not in a voice channel for me to join');
-    return;
-  }
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
