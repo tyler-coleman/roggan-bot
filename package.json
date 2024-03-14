@@ -4,6 +4,8 @@
   "description": "Discord bot for playing AoE2 taunts",
   "main": "index.js",
   "scripts": {
+    "deploy-commands": "ts-node src/deploy-commands.ts",
+    "start": "ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tyler Coleman",
@@ -17,18 +19,19 @@
   },
   "homepage": "https://github.com/tyler-coleman/roggan-bot#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
-    "avconv": "^3.1.0",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "ffmpeg": "^0.0.4",
-    "lodash": "^4.17.20"
+    "@discordjs/voice": "^0.16.1",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "ffmpeg-static": "^5.2.0",
+    "sodium": "^3.0.2",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "eslint": "^7.19.0"
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.2"
   },
   "engines": {
-    "node": "15.7.x",
-    "npm": "7.4.x"
+    "node": "^18.9.x",
+    "npm": "^10.2.x"
   }
 }
